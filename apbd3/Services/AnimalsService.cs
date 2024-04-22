@@ -15,31 +15,26 @@ public class AnimalsService : IAnimalsService
 
     public IEnumerable<Animal> GetAnimals(String orderBy)
     {
-        var data = _animalsRepository.GetAnimals(orderBy);
-        return data;
+        return _animalsRepository.GetAnimals(orderBy);
     }
 
     public Animal GetAnimal(int idAnimal)
     {
-        var data = _animalsRepository.GetAnimal(idAnimal);
-        return data;
+        return _animalsRepository.GetAnimal(idAnimal);
     }
 
     public int CreateAnimal(Animal animal)
     {
-        var data = _animalsRepository.CreateAnimal(animal);
-        return data;
+        return _animalsRepository.CreateAnimal(animal);
     }
 
     public int UpdateAnimal(Animal animal)
     {
-        var data = _animalsRepository.UpdateAnimal(animal);
-        return data;
+        return _animalsRepository.UpdateAnimal(animal);
     }
 
     public int DeleteAnimal(int idAnimal)
     {
-        var data = _animalsRepository.DeleteAnimal(idAnimal);
-        return data;
+        return _animalsRepository.DeleteAnimal(idAnimal);
     }
 }
