@@ -12,7 +12,7 @@ public class AnimalsRepository : IAnimalsRepository
 
         using var cmd = new SqlCommand(); //jak uzywamy using to zawsze zamknie polaczenie przy returnie
         cmd.Connection = con;
-        cmd.CommandText = "SELECT * FROM Animals";
+        cmd.CommandText = "SELECT IdAnimal, Name, Description, Category, Area FROM Animals ORDER BY Name";
 
         var dr = cmd.ExecuteReader();
         var animals = new List<Animal>();
