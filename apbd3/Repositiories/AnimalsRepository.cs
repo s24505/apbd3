@@ -6,14 +6,30 @@ namespace apbd3.Repositiories;
 public class AnimalsRepository : IAnimalsRepository
 {
     private String dbConnection = "Data Source=db-mssql;Initial Catalog=2019SBD;Integrated Security=True";
-    public IEnumerable<Animal> GetAnimals()
+    public IEnumerable<Animal> GetAnimals(String orderBy)
     {
+        Dictionary<string, string> allowedColumns = new Dictionary<string, string>
+        {
+            { "idanimals", "IdAnimals" },
+            { "name", "Name" },
+            { "description", "Description" },
+            { "category", "Category" },
+            { "area", "Area" }
+        };
+        
+        if (!allowedColumns.ContainsKey(orderBy.ToLower()))
+        {
+            return null;
+        }
+
         using SqlConnection con = new(dbConnection);
         con.Open();
 
         using var cmd = new SqlCommand(); //jak uzywamy using to zawsze zamknie polaczenie przy returnie
         cmd.Connection = con;
-        cmd.CommandText = "SELECT IdAnimal, Name, Description, Category, Area FROM Animals ORDER BY Name";
+        string query =
+            $"SELECT IdAnimal, Name, Description, Category, Area FROM Animals ORDER BY {allowedColumns[orderBy.ToLower()]}";
+        cmd.CommandText = query;
 
         var dr = cmd.ExecuteReader();
         var animals = new List<Animal>();

@@ -15,9 +15,9 @@ public class AnimalsController : ControllerBase
     }
     
     [HttpGet]
-    public IActionResult GetAnimals()
+    public IActionResult GetAnimals([FromQuery] string orderBy = "name")
     {
-        var animals = _animalsService.GetAnimals(); //nie chcemy tu logiki biznesowej, tylko w services
+        var animals = _animalsService.GetAnimals(orderBy); //nie chcemy tu logiki biznesowej, tylko w services
         return Ok(animals);
     }
 
@@ -28,17 +28,17 @@ public class AnimalsController : ControllerBase
         return StatusCode(StatusCodes.Status201Created);
     }
 
-    [HttpPut]
+    [HttpPut("{idAnimal:int}")]
     public IActionResult UpdateAnimal(Animal animal)
     {
         _animalsService.UpdateAnimal(animal);
-        return StatusCode(StatusCodes.Status200OK);
+        return NoContent();
     }
 
-    [HttpDelete]
+    [HttpDelete("{idAnimal:int}")]
     public IActionResult DeleteAnimal(int idAnimal)
     {
         _animalsService.DeleteAnimal(idAnimal);
-        return StatusCode(StatusCodes.Status200OK);
+        return NoContent();
     }
 }

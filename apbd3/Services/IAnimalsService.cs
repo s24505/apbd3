@@ -4,7 +4,7 @@ namespace apbd3.Services; //logika biznesowa
 
 public interface IAnimalsService
 {
-    IEnumerable<Animal> GetAnimals();
+    IEnumerable<Animal> GetAnimals(String orderBy);
     Animal GetAnimal(int idAnimal);
     int CreateAnimal(Animal animal);
     int UpdateAnimal(Animal animal);
