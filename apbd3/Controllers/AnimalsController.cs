@@ -27,4 +27,18 @@ public class AnimalsController : ControllerBase
         _animalsService.CreateAnimal(animal);
         return StatusCode(StatusCodes.Status201Created);
     }
+
+    [HttpPut]
+    public IActionResult UpdateAnimal(Animal animal)
+    {
+        _animalsService.UpdateAnimal(animal);
+        return StatusCode(StatusCodes.Status200OK);
+    }
+
+    [HttpDelete]
+    public IActionResult DeleteAnimal(int idAnimal)
+    {
+        _animalsService.DeleteAnimal(idAnimal);
+        return StatusCode(StatusCodes.Status200OK);
+    }
 }
